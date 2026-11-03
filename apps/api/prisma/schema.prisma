@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String       @id @default(cuid())
+  email        String       @unique
+  name         String
+  passwordHash String
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  projects     Project[]
+  compilations Compilation[]
+
+  @@map("users")
+}
+
+model Project {
+  id           String         @id @default(cuid())
+  name         String
+  language     String         @default("cpp")
+  sourceCode   String         @default("")
+  userId       String
+  user         User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  compilations Compilation[]
+
+  @@index([userId, updatedAt])
+  @@map("projects")
+}
+
+model Compilation {
+  id              String    @id @default(cuid())
+  projectId       String?
+  project         Project?  @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  userId          String?
+  user            User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status          String
+  result          Json?
+  errorCount      Int       @default(0)
+  warningCount    Int       @default(0)
+  totalDurationMs Int       @default(0)
+  createdAt       DateTime  @default(now())
+
+  @@index([projectId, createdAt])
+  @@index([userId, createdAt])
+  @@map("compilations")
+}

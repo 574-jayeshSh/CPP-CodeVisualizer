@@ -1,0 +1,22 @@
+{
+  "name": "codelens",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Online compiler and compilation execution visualizer",
+  "scripts": {
+    "dev": "pnpm --parallel -r --filter \"./apps/*\" dev",
+    "dev:api": "pnpm --filter api dev",
+    "dev:web": "pnpm --filter web dev",
+    "build": "pnpm --filter shared build && pnpm --filter api build && pnpm --filter web build",
+    "typecheck": "pnpm --filter shared typecheck && pnpm --filter api typecheck && pnpm --filter web typecheck",
+    "db:push": "pnpm --filter api db:push",
+    "db:generate": "pnpm --filter api db:generate",
+    "db:migrate": "pnpm --filter api db:migrate",
+    "db:studio": "pnpm --filter api db:studio",
+    "lint": "pnpm --filter shared lint && pnpm --filter api lint && pnpm --filter web lint"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@11.24.0"
+}
