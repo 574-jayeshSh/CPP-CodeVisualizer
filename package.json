@@ -13,6 +13,8 @@
     "db:generate": "pnpm --filter api db:generate",
     "db:migrate": "pnpm --filter api db:migrate",
     "db:studio": "pnpm --filter api db:studio",
+    "db:seed": "pnpm --filter api exec prisma db seed",
+    "bench": "node benchmarks/benchmark.mjs",
     "lint": "pnpm --filter shared lint && pnpm --filter api lint && pnpm --filter web lint"
   },
   "engines": {

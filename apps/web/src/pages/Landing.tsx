@@ -106,8 +106,8 @@ interface StatSpec {
 
 // Every number here is measured — see lp-stats-note for methodology.
 const STATS: StatSpec[] = [
-  { value: 138, suffix: "ms", label: "Median hello-world compile" },
-  { value: 480, suffix: "ms", label: "Median run round-trip" },
+  { value: 130, suffix: "ms", label: "Median hello-world compile" },
+  { value: 479, suffix: "ms", label: "Median run round-trip" },
   { value: 5, label: "Stages streamed live" },
   { value: 7, label: "Inspection views" },
   { value: 83, suffix: "KB", label: "Gzipped JS bundle" },
